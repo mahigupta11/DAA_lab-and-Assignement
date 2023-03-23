@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+    int t,n,key,i,j,sum;
+    scanf("%d", &t);
+    
+    for (i = 0; i < t; i++)
+    {
+        scanf("%d", &n);
+        int arr[n];
+        for (j = 0; j < n; j++)
+            scanf("%d", &arr[j]);
+        scanf("%d", &key);
+        int found = 0;
+        for (int k = 0; k < n; k++)
+        {
+            for (int l = k + 1; l < n; l++)
+            {
+                sum = arr[k] + arr[l];
+                if (sum == key)
+                {
+                    printf("%d %d",arr[k] , arr[l]);
+                    found = 1;
+                    break;
+                }
+            }
+            if (found == 1)
+                break;
+        }
+        if (found == 0)
+            printf("No such Element Exist\n");
+    }
+    return 0;
+}
