@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_CHAR 26
+
+void countFreq(char *str, int *freq)
+{
+        for (int i = 0; str[i]; i++)
+    {
+        int index = str[i] - 'a';
+
+        freq[index]++;
+    }
+}
+ 
+char maxFreqChar(char *str)
+{
+    int freq[MAX_CHAR] = { 0 };
+ 
+    countFreq(str, freq);
+ 
+    int max_index = 0;
+    for (int i = 1; i < MAX_CHAR; i++)
+    {
+        if (freq[max_index] < freq[i])
+            max_index = i;
+    }
+ 
+    return (char)(max_index + 'a');
+}
+ 
+int main()
+{
+    int T;
+    printf("Enter the NO. of Test Cases: ");
+    scanf("%d",&T);
+    while(T--)
+    {
+        char str[100];
+        scanf("%s",&str);
+        char max_char = maxFreqChar(str);
+        printf("The maximum occurring character is '%c'.\n", max_char);
+    }
+ 
+    return 0;
+}
