@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+bool dfs(vector<int> Graph[], int node, int des, int vis[])
+{
+  vis[node] = 1;
+  for(auto it : Graph[node])
+  {
+    if(it == des)
+    {
+      return true;
+    }
+    else if(!vis[it])
+    {
+      if(dfs(Graph, it, des, vis))
+      {
+        return true;
+      }
+    }
+  }
+ return false;
+}
+int main()
+{
+ int V, src, des;
+ cout << "Enter number of Vertices : ";
+ cin >> V;
+ vector<int> Graph[V];
+ for (int i = 0; i < V; i++)
+ {
+ cout << "Enter number of neighbours of " << i << " : " << endl;
+ int temp;
+ cin >> temp;
+ if(temp){
+ cout << "Enter neighbours : " << endl;
+ while (temp--)
+ {
+ int x;
+ cin >> x;
+ Graph[i].push_back(x);
+ }
+ }
+ }
+ int vis[V] = {0};
+ cout<<"Enter source : ";
+ cin>>src;
+ cout<<"Enter destination : ";
+ cin>>des;
+ if(dfs(Graph, src, des, vis)){
+ cout<<"Path exits"<<endl;
+ }
+ else{
+ cout<<"No path exits"<<endl;
+ }
+ return 0;
+}
